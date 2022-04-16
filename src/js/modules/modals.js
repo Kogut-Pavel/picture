@@ -63,7 +63,7 @@ const modals = () => {
             }
         }, time);
     }
-
+    // Когда скроллим страницу до конца, открывается модальное окно с подарком
     function openByScroll(selector) {
         window.addEventListener('scroll', () => {
              if (!btnPressed && (window.pageYOffset + document.documentElement.clientHeight >= document.documentElement.scrollHeight)) {
