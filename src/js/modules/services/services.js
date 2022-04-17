@@ -17,10 +17,10 @@ function modifyBody(flow, scroll) {
     document.body.style.marginRight = `${scroll}px`;
 }
 
+// Всем инпутам с вводом телефона разрешаем только цифры
 const checkNumInputs = (selector) => {
     const numInputs = document.querySelectorAll(selector);
 
-// Всем инпутам с вводом телефона разрешаем только цифры
     numInputs.forEach(item => {
         item.addEventListener('input', () => {
             item.value = item.value.replace(/\D/, '');
@@ -28,10 +28,27 @@ const checkNumInputs = (selector) => {
     });
 };
 
+// Всем инпутам с вводом текста/имени разрешаем только русские буквы
+const checkTextInputs = (selector) => {
+    const txtInputs = document.querySelectorAll(selector);
+
+    txtInputs.forEach(input => {
+        input.addEventListener('input', () => {
+            if (input.value.match(/[a-z]/ig)) {
+                input.value = '';
+            }
+        });
+    });
+};
+
 const clearInputs = () => { // Очищаем инпуты
     const inputs = document.querySelectorAll('input');
+    const upload = document.querySelectorAll('[name="upload"]'); // Инпуты с загрузкой изображения
     inputs.forEach(item => {
         item.value = '';
+    });
+    upload.forEach(item => {
+        item.previousElementSibling.textContent = "Файл не выбран";
     });
 };
 
@@ -50,5 +67,6 @@ const closeModals = () => {
 export {calcScroll};
 export {modifyBody};
 export {checkNumInputs};
+export {checkTextInputs};
 export {clearInputs};
 export {closeModals};
