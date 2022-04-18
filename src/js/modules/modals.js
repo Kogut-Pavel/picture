@@ -1,7 +1,7 @@
-import {closeModals} from "./services/services";
-import {clearInputs} from "./services/services";
-import {calcScroll} from "./services/services";
-import {modifyBody} from "./services/services";
+import {closeModals} from "../services/services";
+import {clearInputs} from "../services/services";
+import {calcScroll} from "../services/services";
+import {modifyBody} from "../services/services";
 
 const modals = () => {
 

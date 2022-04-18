@@ -1,6 +1,7 @@
-import {checkNumInputs} from "./services/services";
-import {clearInputs} from "./services/services";
-import {checkTextInputs} from "./services/services";
+import {checkNumInputs} from "../services/services";
+import {clearInputs} from "../services/services";
+import {checkTextInputs} from "../services/services";
+import {postData} from "../services/requests";
 
 const forms = () => {
     const form = document.querySelectorAll('form');
@@ -24,14 +25,7 @@ const forms = () => {
         question: 'assets/question.php'
     }
 
-    const postData = async (url, data) => { // Отправка запроса
-        let res = await fetch(url, {
-            method: "POST",
-            body: data,
-        });
 
-        return await res.text();
-    };
 
     // Перебираем инпуты с загрузкой изображения и после добавления загрузки картинки - сокращаем её название до 10 символов
     upload.forEach(item => {
