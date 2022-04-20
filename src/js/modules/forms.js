@@ -1,9 +1,9 @@
-import {checkNumInputs} from "../services/services";
+import {checkNumInputs, clearState} from "../services/services";
 import {clearInputs} from "../services/services";
 import {checkTextInputs} from "../services/services";
 import {postData} from "../services/requests";
 
-const forms = () => {
+const forms = (state) => {
     const form = document.querySelectorAll('form');
     const upload = document.querySelectorAll('[name="upload"]');
 
@@ -24,7 +24,6 @@ const forms = () => {
         designer: 'assets/server.php',
         question: 'assets/question.php'
     }
-
 
 
     // Перебираем инпуты с загрузкой изображения и после добавления загрузки картинки - сокращаем её название до 10 символов
@@ -62,12 +61,21 @@ const forms = () => {
 
             const formData = new FormData(item); // Собираем данные из формы
             let api;
+
+            if (item.classList.contains('calc-form')) {
+                for (let key in state) {
+                    formData.append(key, state[key]);
+                }
+            }
+
             item.closest('.popup-design') || item.classList.contains('calc-form') ? api = path.designer : api = path.question;
 
             // Отправляем запрос на сервер с данными из formData
             postData(api, formData)
                 .then(res => {
-                    console.log(res);
+                    for (const [key, value] of formData) {
+                        console.log('»', key, value);
+                    }
                     statusImg.setAttribute('src', message.ok);
                     textMessage.textContent = message.success;
                 })
@@ -82,6 +90,11 @@ const forms = () => {
                         item.style.display = 'block';
                         item.classList.remove('fadeOutUp');
                         item.classList.add('fadeInUp');
+                        clearState(state);
+                        document.querySelectorAll('.calc select').forEach(select => {
+                            select.value = '';
+                        });
+                        document.querySelector('.calc-price').textContent = 'Для расчета нужно выбрать размер картины и материал картины';
                     }, 6000);
                 })
         });
