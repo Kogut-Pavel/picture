@@ -5,6 +5,7 @@ import mask from "./modules/mask";
 import showMoreStyles from "./modules/showMoreStyles";
 import calc from "./modules/calc";
 import filter from "./modules/filter";
+import pictureSize from "./modules/pictureSize";
 
 window.addEventListener('DOMContentLoaded', () => {
     'use strict';
@@ -19,4 +20,5 @@ window.addEventListener('DOMContentLoaded', () => {
     showMoreStyles('#styles .row', '.button-styles');
     calc('#size', '#material', '#option', '.promocode', '.calc-price', '[data-calc]', formState);
     filter();
+    pictureSize('.sizes-block');
 });
