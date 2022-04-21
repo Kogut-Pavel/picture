@@ -4,6 +4,7 @@ import forms from './modules/forms';
 import mask from "./modules/mask";
 import showMoreStyles from "./modules/showMoreStyles";
 import calc from "./modules/calc";
+import filter from "./modules/filter";
 
 window.addEventListener('DOMContentLoaded', () => {
     'use strict';
@@ -17,4 +18,5 @@ window.addEventListener('DOMContentLoaded', () => {
     mask('[name="phone"]');
     showMoreStyles('#styles .row', '.button-styles');
     calc('#size', '#material', '#option', '.promocode', '.calc-price', '[data-calc]', formState);
+    filter();
 });
